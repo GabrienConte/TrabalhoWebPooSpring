@@ -1,0 +1,71 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/CommonView/header :: head('Cliente')"></head>
+
+<body>
+<div th:insert="/CommonView/navbar :: navbar"></div>
+<div>
+    <main>
+        <div class="container content is-fluid mt-5 mb-5">
+            <section>
+                <h1 class="title">Criar/Editar novo Cliente</h1>
+
+                <div class="container">
+                    <form th:action="@{/entidades}" method="post" th:object="${entidade}">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="field">
+                            <label class="label">Nome</label>
+                            <div class="control">
+                                <input th:field="*{nome}" class="input" type="text" placeholder="Nome" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">CPF</label>
+                            <div class="control">
+                                <input th:field="*{cpf}" class="input" type="text" placeholder="999.999.999-99" maxlength="14" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Telefone</label>
+                            <div class="control">
+                                <input th:field="*{telefone}" class="input" type="text" data-js="telefone" placeholder="(55)99999-9999" maxlength="14" required>
+                            </div>
+                        </div>
+
+                        <div class="field is-grouped is-grouped-right">
+                            <p class="control">
+                                <button type="submit" class="button is-primary">Salvar</button>
+                            </p>
+                            <p class="control">
+                                <button type="reset" class="button is-light">Limpar</button>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<footer th:insert="/CommonView/footer :: footer"></footer>
+</body>
+</html>
+<script type="application/javascript">
+    const $input = document.querySelector('[data-js="telefone"]')
+    $input.addEventListener('input', handleInput, false)
+
+    function handleInput(e) {
+        e.target.value = phoneMask(e.target.value)
+    }
+
+    function phoneMask(phone) {
+        return phone.replace(/\D/g, '')
+            .replace(/^(\d)/, '($1')
+            .replace(/^(\(\d{2})(\d)/, '$1)$2')
+            .replace(/(\d{4})(\d{1,5})/, '$1-$2')
+            .replace(/(-\d{5})\d+?$/, '$1');
+    }
+</script>

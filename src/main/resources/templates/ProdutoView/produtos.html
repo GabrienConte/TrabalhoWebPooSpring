@@ -1,0 +1,75 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/CommonView/header :: head('Produtos')">
+
+</head>
+<body>
+<div th:insert="/CommonView/navbar :: navbar">
+</div>
+<div>
+    <main>
+        <div class="container content is-fluid mt-5 mb-5">
+            <section>
+                <h1 class="title">Lista de produtos</h1>
+                <div class="buttons">
+                    <a href="produtos/new" class="button is-normal is-link">Adicionar Produto</a>
+                </div>
+                <div class="table-container">
+                    <table class="table is-bordered is-hoverable">
+                        <thead>
+                        <tr class="has-text-centered is-size-4">
+                            <th>Descrição</th>
+                            <th>Marca</th>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="p : ${produtos}">
+                            <td th:text="${p.descricao}"></td>
+                            <td th:text="${p.marca}"></td>
+                            <td th:text="${p.quantidade}"></td>
+                            <td th:text="'R$: ' + ${p.valor}"></td>
+                            <td>
+                                <a th:href="@{/produtos/{id}/edit(id=${p.id})}" class="button is-info is-light mr-3">Edit</a>
+                                <a th:href="@{/produtos/{id}/delete(id=${p.id})}" class="button is-danger is-light">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="level mt-5">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Tweets</p>
+                        <p class="title">3,456</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Following</p>
+                        <p class="title">123</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Followers</p>
+                        <p class="title">456K</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">Likes</p>
+                        <p class="title">789</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<footer th:insert="/CommonView/footer :: footer"></footer>
+</body>
+</html>

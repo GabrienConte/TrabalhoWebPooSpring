@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/CommonView/header :: head('Clientes')">
+
+</head>
+<body>
+<div th:insert="/CommonView/navbar :: navbar">
+</div>
+<div>
+    <main>
+        <div class="container content is-fluid mt-5 mb-5">
+            <section>
+                <h1 class="title">Lista de Clientes</h1>
+                <div class="buttons">
+                    <a href="entidades/new" class="button is-normal is-link">Adicionar Cliente</a>
+                </div>
+                <div class="table-container">
+                    <table class="table is-bordered is-hoverable">
+                        <thead>
+                        <tr class="has-text-centered is-size-4">
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="e : ${entidades}">
+                            <td th:text="${e.nome}"></td>
+                            <td th:text="${e.cpf}"></td>
+                            <td th:text="${e.telefone}"></td>
+                            <td>
+                                <a th:href="@{/entidades/{id}/edit(id=${e.id})}" class="button is-info is-light mr-3">Editar</a>
+                                <a th:href="@{/entidades/{id}/delete(id=${e.id})}" class="button is-danger is-light">Excluir</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<footer th:insert="/CommonView/footer :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/CommonView/header :: head('Produto')"></head>
+
+<body>
+<div th:insert="/CommonView/navbar :: navbar"></div>
+<div>
+  <main>
+    <div class="container content is-fluid mt-5 mb-5">
+      <section>
+        <h1 class="title">Criar/Editar novo produto</h1>
+
+        <div class="container">
+          <form th:action="@{/produtos}" method="post" th:object="${produto}">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="field">
+              <label class="label">Descrição</label>
+              <div class="control">
+                <input th:field="*{descricao}" class="input" type="text" placeholder="Produto" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Marca</label>
+              <div class="control">
+                <input th:field="*{marca}" class="input" type="text" placeholder="Marca" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Valor</label>
+              <div class="control">
+                <input th:field="*{valor}" class="input" type="number" placeholder="0,00" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Quantidade</label>
+              <div class="control">
+                <input th:field="*{quantidade}" class="input" type="number" placeholder="0" required>
+              </div>
+            </div>
+
+            <div class="field is-grouped is-grouped-right">
+              <p class="control">
+                <button type="submit" class="button is-primary">Salvar</button>
+              </p>
+              <p class="control">
+                <button type="reset" class="button is-light">Limpar</button>
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<footer th:insert="/CommonView/footer :: footer"></footer>
+</body>
+</html>

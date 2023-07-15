@@ -1,0 +1,79 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/CommonView/header :: head('Pedido')"></head>
+
+<body>
+<div th:insert="/CommonView/navbar :: navbar"></div>
+<div>
+    <main>
+        <div class="container content is-fluid mt-5 mb-5">
+            <section>
+                <h1 class="title">Criar/Editar novo Pedido</h1>
+
+                <div class="container">
+                    <form th:action="@{/pedidos}" method="post" th:object="${pedido}">
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="field">
+                            <label class="label">Data Entrega</label>
+                            <div class="control">
+                                <input th:field="*{dataEntrega}" class="input" type="date" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Data Devolução</label>
+                            <div class="control">
+                                <input th:field="*{dataDevolucao}" class="input" type="date" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Total</label>
+                            <div class="control">
+                                <input th:field="*{total}" class="input" type="number" placeholder="E-mail" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Cliente</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select th:field="*{entidade}" required>
+                                        <option value="">.. Selecione ..</option>
+                                        <option th:each="e : ${entidades}" th:value="${e.id}" th:text="${e.nome}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Usuário</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select th:field="*{usuario}" required>
+                                        <option value="">.. Selecione ..</option>
+                                        <option th:each="u : ${usuarios}" th:value="${u.id}" th:text="${u.nome}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field is-grouped is-grouped-right">
+                            <p class="control">
+                                <button type="submit" class="button is-primary">Salvar</button>
+                            </p>
+                            <p class="control">
+                                <button type="reset" class="button is-light">Limpar</button>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<footer th:insert="/CommonView/footer :: footer"></footer>
+</body>
+</html>
