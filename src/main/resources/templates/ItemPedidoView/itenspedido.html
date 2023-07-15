@@ -1,18 +1,55 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Gabriel Conte
-  Date: 16/06/2023
-  Time: 00:15
-  To change this template use File | Settings | File Templates.
---%>
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="/CommonView/header :: head('')">
 
-</head>
+<head th:insert="/CommonView/header :: head('Itens Pedido')"></head>
+
 <body>
 <div th:insert="/CommonView/navbar :: navbar"></div>
+<div>
+    <main>
+        <div class="container content is-fluid mt-5 mb-5">
+            <section>
+                <h1 class="title">Itens Pedido</h1>
 
+                <div class="container">
+                    <div>
+                        <section>
+                            <div class="buttons">
+                                <a th:href="@{/itenspedido/new/{idPedido}(idPedido = ${idPedido})}" class="button is-normal is-link">Adicionar Item Pedido</a>
+                            </div>
+                            <div class="table-container">
+                                <table class="table is-bordered is-hoverable">
+                                    <thead>
+                                    <tr class="has-text-centered is-size-4">
+                                        <th>Produto</th>
+                                        <th>Produto Valor</th>
+                                        <th>Quantidade</th>
+                                        <th>Total</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="it : ${itensPedido}">
+                                        <td th:text="${it.produto.descricao}"></td>
+                                        <td th:text="${it.produto.valor}"></td>
+                                        <td th:text="${it.quantidade}"></td>
+                                        <td th:text="'R$: ' + ${it.total}"></td>
+                                        <td>
+                                            <a th:href="@{/itenspedido/{id}/edit(id=${it.id})}" class="button is-info is-light mr-3">Editar</a>
+                                            <a th:href="@{/itenspedido/{id}/delete(id=${it.id})}" class="button is-danger is-light">Excluir</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <a href="/pedidos">Voltar</a>
+            </section>
+        </div>
+    </main>
+</div>
 <footer th:insert="/CommonView/footer :: footer"></footer>
 </body>
 </html>

@@ -18,23 +18,16 @@
                         <div class="field">
                             <label class="label">Data Entrega</label>
                             <div class="control">
-                                <input th:field="*{dataEntrega}" class="input" type="date" required>
+                                <input th:field="*{dataVenda}" class="input" type="date" required>
                             </div>
                         </div>
 
-                        <div class="field">
-                            <label class="label">Data Devolução</label>
-                            <div class="control">
-                                <input th:field="*{dataDevolucao}" class="input" type="date" required>
-                            </div>
-                        </div>
-
-                        <div class="field">
+                        <!-- <div class="field">
                             <label class="label">Total</label>
                             <div class="control">
-                                <input th:field="*{total}" class="input" type="number" placeholder="E-mail" required>
+                                <input th:field="*{total}" class="input" type="number" placeholder="Total" required>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="field">
                             <label class="label">Cliente</label>
@@ -70,6 +63,7 @@
                         </div>
                     </form>
                 </div>
+                <a href="/pedidos">Voltar</a>
             </section>
         </div>
     </main>

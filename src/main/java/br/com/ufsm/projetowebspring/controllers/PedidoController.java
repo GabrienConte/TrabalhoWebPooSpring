@@ -1,9 +1,11 @@
 package br.com.ufsm.projetowebspring.controllers;
 
 import br.com.ufsm.projetowebspring.dao.EntidadeDAO;
+import br.com.ufsm.projetowebspring.dao.ItemPedidoDAO;
 import br.com.ufsm.projetowebspring.dao.PedidoDAO;
 import br.com.ufsm.projetowebspring.dao.UsuarioDAO;
 import br.com.ufsm.projetowebspring.models.Entidade;
+import br.com.ufsm.projetowebspring.models.ItemPedido;
 import br.com.ufsm.projetowebspring.models.Pedido;
 import br.com.ufsm.projetowebspring.models.Usuario;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,8 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/pedidos")
@@ -29,6 +30,8 @@ public class PedidoController {
     private EntidadeDAO entidadeDAO;
     @Autowired
     private UsuarioDAO usuarioDAO;
+    @Autowired
+    private ItemPedidoDAO itemPedidoDAO;
 
     @GetMapping
     public ModelAndView visualizarPedidos() {
@@ -42,6 +45,7 @@ public class PedidoController {
         ModelAndView mv = new ModelAndView("PedidoView/pedidoCriarOuEditar");
         mv.addObject("entidades", entidadeDAO.findAll());
         mv.addObject("usuarios", usuarioDAO.findAll());
+        mv.addObject("itensPedido", new ArrayList<ItemPedido>());
         mv.addObject("pedido", new Pedido());
         return mv;
     }

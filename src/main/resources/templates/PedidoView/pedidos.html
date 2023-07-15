@@ -20,8 +20,7 @@
                         <thead>
                         <tr class="has-text-centered is-size-4">
                             <th>Cliente</th>
-                            <th>Data Devolução</th>
-                            <th>Data Entrega</th>
+                            <th>Data Venda</th>
                             <th>Total</th>
                             <th>Funcionário</th>
                             <th>Ações</th>
@@ -30,11 +29,11 @@
                         <tbody>
                         <tr th:each="p : ${pedidos}">
                             <td th:text="${p.entidade.nome}"></td>
-                            <td th:text="${p.dataDevolucao}"></td>
-                            <td th:text="${p.dataEntrega}"></td>
+                            <td th:text="${p.dataVenda}"></td>
                             <td th:text="'R$: ' + ${p.total}"></td>
                             <td th:text="${p.usuario.nome}"></td>
                             <td>
+                                <a th:href="@{/itenspedido/{idPedido}(idPedido=${p.id})}" class="button is-info is-light mr-3">Itens Pedido</a>
                                 <a th:href="@{/pedidos/{id}/edit(id=${p.id})}" class="button is-info is-light mr-3">Editar</a>
                                 <a th:href="@{/pedidos/{id}/delete(id=${p.id})}" class="button is-danger is-light">Excluir</a>
                             </td>

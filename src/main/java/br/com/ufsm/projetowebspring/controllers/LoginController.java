@@ -1,9 +1,7 @@
 package br.com.ufsm.projetowebspring.controllers;
 
 import br.com.ufsm.projetowebspring.dao.UsuarioDAO;
-import br.com.ufsm.projetowebspring.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +23,7 @@ public class LoginController {
     @PostMapping("/login")
     public ModelAndView autenticar(String login, String senha) {
         ModelAndView mv;
-        if (new LoginService().autenticar(login, senha)) {
+        if (usuarioDAO.findOneByLoginAndSenha(login, senha) != null) {
             mv = new ModelAndView("principal");
         } else {
             System.out.println("deu ruim");

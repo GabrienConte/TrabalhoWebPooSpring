@@ -3,14 +3,15 @@ package br.com.ufsm.projetowebspring.models;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
+
 @Entity
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int  id;
     
-    private Date dataEntrega;
-    private Date dataDevolucao;
+    private String dataVenda;
     
     private float total;
     @ManyToOne
@@ -19,6 +20,9 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "entidadeid")
     private Entidade entidade;
+
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY)
+    private List<ItemPedido> itensPedido;
 
     public Pedido() {
     }
@@ -31,28 +35,20 @@ public class Pedido {
         this.id = id;
     }
 
-    public Date getDataEntrega() {
-        return dataEntrega;
-    }
-
-    public void setDataEntrega(Date dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
-
-    public Date getDataDevolucao() {
-        return dataDevolucao;
-    }
-
-    public void setDataDevolucao(Date dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
-    }
-
     public float getTotal() {
         return total;
     }
 
     public void setTotal(float total) {
         this.total = total;
+    }
+
+    public String getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(String dataVenda) {
+        this.dataVenda = dataVenda;
     }
 
     public Usuario getUsuario() {
@@ -69,5 +65,13 @@ public class Pedido {
 
     public void setEntidade(Entidade entidade) {
         this.entidade = entidade;
+    }
+
+    public List<ItemPedido> getItensPedido() {
+        return itensPedido;
+    }
+
+    public void setItensPedido(List<ItemPedido> itensPedido) {
+        this.itensPedido = itensPedido;
     }
 }
