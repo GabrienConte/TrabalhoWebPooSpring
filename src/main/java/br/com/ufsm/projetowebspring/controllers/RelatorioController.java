@@ -24,24 +24,6 @@ public class RelatorioController {
         mv.addObject("pedidosPorUsuario", relatorioService.gerarRelatorioPedidosPorUsuario());
         mv.addObject("vendasPorCliente", relatorioService.gerarRelatorioPedidosPorEntidade());
         mv.addObject("produtosMaisVendidos", relatorioService.gerarRelatorioProdutosMaisVendidos());
-
-        System.out.println("-----------------------pedidosPorUsuario---------------------");
-        for(RelatorioPedidosPorUsuario row : relatorioService.gerarRelatorioPedidosPorUsuario()) {
-            System.out.println(row.toString());
-        }
-        System.out.println("------------------------------------------------------------");
-
-        System.out.println("-----------------------vendasPorCliente---------------------");
-        for(RelatorioVendasPorEntidade row :relatorioService.gerarRelatorioPedidosPorEntidade()) {
-            System.out.println(row.toString());
-        }
-        System.out.println("------------------------------------------------------------");
-
-        System.out.println("-----------------------produtosMaisVendidos---------------------");
-        for(RelatorioProdutosMaisVendidos row : relatorioService.gerarRelatorioProdutosMaisVendidos()) {
-            System.out.println(row.toString());
-        }
-        System.out.println("------------------------------------------------------------");
         return mv;
     }
 }
