@@ -1,0 +1,92 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="/CommonView/header :: head('Produtos')">
+
+</head>
+<body>
+<div th:insert="/CommonView/navbar :: navbar">
+</div>
+<div>
+  <main>
+    <div class="container content is-fluid mt-5 mb-5">
+      <section>
+        <h1 class="title">Produtos mais Vendidos</h1>
+
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable">
+            <thead>
+            <tr class="has-text-centered is-size-4">
+              <th>Produto</th>
+              <th>Marca</th>
+              <th>Total Vendido</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pv : ${produtosMaisVendidos}">
+              <td th:text="${pv.getdescricao()}"></td>
+              <td th:text="${pv.marca}"></td>
+              <td th:text="'R$: ' + ${pv.quantidadeTotalVendida}"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mt-5">
+        <h1 class="title">Vendas por Cliente</h1>
+
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable">
+            <thead>
+            <tr class="has-text-centered is-size-4">
+              <th>Cliente</th>
+              <th>Telefone</th>
+              <th>Total Gasto</th>
+              <th>Qtd. Vendas</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="vc : ${vendasPorCliente}">
+              <td th:text="${vc.nomeEntidade}"></td>
+              <td th:text="${vc.telefone}"></td>
+              <td th:text="'R$: ' + ${vc.totalGasto}"></td>
+              <td th:text="${vc.quantidadeDeVendas}"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mt-5">
+        <h1 class="title">Pedidos por Usuário</h1>
+
+        <div class="table-container">
+          <table class="table is-bordered is-hoverable">
+            <thead>
+            <tr class="has-text-centered is-size-4">
+              <th>Funcionário</th>
+              <th>ID Pedido</th>
+              <th>Cliente</th>
+              <th>Data Venda</th>
+              <th>Total Pedido</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pu : ${pedidosPorUsuario}">
+              <td th:text="${pu.nomeUsuario}"></td>
+              <td th:text="${pu.idPedido}"></td>
+              <td th:text="${pu.nomeEntidade}"></td>
+              <td th:text="${pu.dataVenda}"></td>
+              <td th:text="'R$: ' + ${pu.total}"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+<footer th:insert="/CommonView/footer :: footer"></footer>
+</body>
+</html>

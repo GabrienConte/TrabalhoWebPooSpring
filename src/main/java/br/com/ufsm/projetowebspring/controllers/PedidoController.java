@@ -30,8 +30,6 @@ public class PedidoController {
     private EntidadeDAO entidadeDAO;
     @Autowired
     private UsuarioDAO usuarioDAO;
-    @Autowired
-    private ItemPedidoDAO itemPedidoDAO;
 
     @GetMapping
     public ModelAndView visualizarPedidos() {
