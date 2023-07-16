@@ -13,6 +13,8 @@ import java.util.List;
 public interface ItemPedidoDAO extends JpaRepository<ItemPedido, Integer> {
     List<ItemPedido> findAllByPedidoId(final int pedidoId);
 
+    List<ItemPedido> findAllByProdutoId(final int produtoId);
+
     @Query("SELECT SUM(ip.total) FROM ItemPedido ip WHERE ip.pedido.id = :pedidoId")
     Float selectTotals(@Param("pedidoId") int pedidoId);
 }

@@ -21,7 +21,6 @@
                         <tr class="has-text-centered is-size-4">
                             <th>Descrição</th>
                             <th>Marca</th>
-                            <th>Quantidade</th>
                             <th>Valor</th>
                             <th>Ações</th>
                         </tr>
@@ -30,7 +29,6 @@
                         <tr th:each="p : ${produtos}">
                             <td th:text="${p.descricao}"></td>
                             <td th:text="${p.marca}"></td>
-                            <td th:text="${p.quantidade}"></td>
                             <td th:text="'R$: ' + ${p.valor}"></td>
                             <td>
                                 <a th:href="@{/produtos/{id}/edit(id=${p.id})}" class="button is-info is-light mr-3">Edit</a>

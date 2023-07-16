@@ -32,14 +32,7 @@
             <div class="field">
               <label class="label">Valor</label>
               <div class="control">
-                <input th:field="*{valor}" class="input" type="number" placeholder="0,00" required>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label">Quantidade</label>
-              <div class="control">
-                <input th:field="*{quantidade}" class="input" type="number" placeholder="0" required>
+                <input th:field="*{valor}" class="input" type="text" pattern="^\d*(\.\d{0,2})?$" placeholder="0.00" required>
               </div>
             </div>
 
@@ -59,5 +52,19 @@
   </main>
 </div>
 <footer th:insert="/CommonView/footer :: footer"></footer>
+<script>
+  $(document).on('keydown', 'input[pattern]', function(e){
+    var input = $(this);
+    var oldVal = input.val();
+    var regex = new RegExp(input.attr('pattern'), 'g');
+
+    setTimeout(function(){
+      var newVal = input.val();
+      if(!regex.test(newVal)){
+        input.val(oldVal);
+      }
+    }, 1);
+  });
+</script>
 </body>
 </html>

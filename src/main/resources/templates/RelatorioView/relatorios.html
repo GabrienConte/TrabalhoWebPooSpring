@@ -26,7 +26,7 @@
             <tr th:each="pv : ${produtosMaisVendidos}">
               <td th:text="${pv.getdescricao()}"></td>
               <td th:text="${pv.marca}"></td>
-              <td th:text="'R$: ' + ${pv.quantidadeTotalVendida}"></td>
+              <td th:text="${pv.quantidadeTotalVendida}"></td>
             </tr>
             </tbody>
           </table>

@@ -12,8 +12,6 @@ public class Produto {
     
     private String marca;
     
-    private float quantidade;
-    
     private float valor;
 
     public Produto() {
@@ -41,14 +39,6 @@ public class Produto {
 
     public void setMarca(String marca) {
         this.marca = marca;
-    }
-
-    public float getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(float quantidade) {
-        this.quantidade = quantidade;
     }
 
     public float getValor() {
